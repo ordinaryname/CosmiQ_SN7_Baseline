@@ -24,7 +24,9 @@ RUN apt-get update \
     bzip2 \
     ca-certificates \
     curl \
+    emacs \
     git \
+    less \
     libgdal-dev \
     libssl-dev \
     libffi-dev \
@@ -37,6 +39,7 @@ RUN apt-get update \
     python-pip \
     python-wheel \
     python-setuptools \
+    tree \
     unzip \
     vim \
     wget \
@@ -62,7 +65,7 @@ RUN conda update conda && \
     conda config --prepend channels pytorch
 
 # get dev version of solaris and create conda environment based on its env file
-WORKDIR /tmp/
+WORKDIR /root/
 RUN git clone https://github.com/cosmiq/solaris.git && \
     cd solaris && \
     git checkout ${solaris_branch} && \
@@ -86,6 +89,9 @@ RUN source activate solaris && python -m ipykernel.kernelspec \
 
 # Need imagecodecs for Planet files
 RUN pip install imagecodecs
+
+# Copy baseline into image
+COPY ./ ./
 
 # open ports for jupyterlab and tensorboard
 EXPOSE 8888 6006
