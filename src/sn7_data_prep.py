@@ -60,8 +60,8 @@ make_fbc = False
 input_args = []
 for i, aoi in enumerate(aois):
     print(i, "aoi:", aoi)
-    im_dir = os.path.join(outp_dir, aoi, 'images_masked/')
-    json_dir = os.path.join(outp_dir, aoi, 'labels_match/')
+    im_dir = os.path.join(root_dir, aoi, 'images_masked/')
+    json_dir = os.path.join(root_dir, aoi, 'labels_match/')
     out_dir_mask = os.path.join(outp_dir, aoi, 'masks/')
     out_dir_mask_fbc = os.path.join(outp_dir, aoi, 'masks_fbc/')
     os.makedirs(out_dir_mask, exist_ok=True)
