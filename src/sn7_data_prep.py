@@ -196,13 +196,13 @@ for j, f in enumerate(json_files):
 
 # Make dataframe csvs for train/test
 
-out_dir = os.path.join(outp_dir, 'csvs/')
+out_dir = os.path.join(outp_dir, '../csvs/')
 pops = ['train']
 os.makedirs(out_dir, exist_ok=True)
 
 for pop in pops: 
     d = outp_dir
-    outpath = os.path.join(out_dir, 'sn7_baseline_df.csv')
+    outpath = os.path.join(out_dir, 'sn7_baseline_' + pop + '_df.csv')
     im_list, mask_list = [], []
     subdirs = sorted([f for f in os.listdir(d) if os.path.isdir(os.path.join(d, f))])
     for subdir in subdirs:
