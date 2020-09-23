@@ -1,6 +1,6 @@
 #!/bin/bash
 
 echo Train
-cd "$0"/src
-time python sn7_data_prep.py $1
-time python sn7_baseline_train.py $1
+cd $(dirname "$0")
+time python sn7_data_prep.py $1 output
+time python train.py output

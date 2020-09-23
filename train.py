@@ -3,7 +3,7 @@ import sys
 import os
 config_path = 'yml/sn7_baseline_train.yml'
 config = sol.utils.config.parse(config_path)
-config['training_data_csv'] = os.path.join(sys.argv[1], 'sn7_train_ground_truth_pix.csv')
+config['training_data_csv'] = os.path.join(sys.argv[1], 'csvs/sn7_baseline_df.csv')
 config['training']['callbacks']['model_checkpoint']['filepath'] = os.path.abspath('./models/sn7_baseline/xdxd_best.pth')
 config['training']['model_dest_path'] = os.path.abspath('./models/sn7_baseline/xdxd_final.pth')
 print('Config:')
