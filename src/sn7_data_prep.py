@@ -6,9 +6,6 @@
 # This Python script does the data processing steps (but not the visualization steps) from the ../notebooks/sn7_data_prep.ipynb notebook.  It takes the input file location as an argument.
 
 
-We assume that initial steps of README have been executed and that this notebook is running in a docker container.  See the `src` directory for functions used in the algorithm.  
-
-
 # In[ ]:
 
 
