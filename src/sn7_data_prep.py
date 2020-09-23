@@ -39,7 +39,8 @@ from sn7_baseline_prep_funcs import map_wrapper, make_geojsons_and_masks
 
 
 # Dataset location
-root_dir = sys.args[1]
+root_dir = sys.argv[1]
+outp_dir = sys.argv[2]
 
 
 # In[ ]:
@@ -59,10 +60,10 @@ make_fbc = False
 input_args = []
 for i, aoi in enumerate(aois):
     print(i, "aoi:", aoi)
-    im_dir = os.path.join(root_dir, 'train', aoi, 'images_masked/')
-    json_dir = os.path.join(root_dir, 'train', aoi, 'labels_match/')
-    out_dir_mask = os.path.join(root_dir, 'train', aoi, 'masks/')
-    out_dir_mask_fbc = os.path.join(root_dir, 'train', aoi, 'masks_fbc/')
+    im_dir = os.path.join(outp_dir, 'train', aoi, 'images_masked/')
+    json_dir = os.path.join(outp_dir, 'train', aoi, 'labels_match/')
+    out_dir_mask = os.path.join(outp_dir, 'train', aoi, 'masks/')
+    out_dir_mask_fbc = os.path.join(outp_dir, 'train', aoi, 'masks_fbc/')
     os.makedirs(out_dir_mask, exist_ok=True)
     if make_fbc:
         os.makedirs(out_dir_mask_fbc, exist_ok=True)
@@ -99,10 +100,10 @@ with multiprocessing.Pool(n_threads) as pool:
 
 
 # Inspect visually
-
+"""
 aoi = 'L15-0331E-1257N_1327_3160_13'
-im_dir = os.path.join(root_dir, 'train', aoi, 'images_masked')
-mask_dir = os.path.join(root_dir, 'train', aoi, 'masks')
+im_dir = os.path.join(outp_dir, 'train', aoi, 'images_masked')
+mask_dir = os.path.join(outp_dir, 'train', aoi, 'masks')
 
 im_list = sorted([z for z in os.listdir(im_dir) if z.endswith('.tif')])
 im_file = im_list[0]
@@ -125,16 +126,17 @@ ax1.set_yticks([])
 # _ = ax1.set_title(name)
 _ = fig.suptitle(name)
 plt.tight_layout()
+"""
 
 
 # In[ ]:
 
 
 # make identifier plots
-
+"""
 aoi = 'L15-0331E-1257N_1327_3160_13'
-im_dir = os.path.join(root_dir, 'train', aoi, 'images_masked')
-json_dir = os.path.join(root_dir, 'train', aoi, 'labels_match/')
+im_dir = os.path.join(outp_dir, 'train', aoi, 'images_masked')
+json_dir = os.path.join(outp_dir, 'train', aoi, 'labels_match/')
 
 # colors
 vmax = 200
@@ -186,6 +188,7 @@ for j, f in enumerate(json_files):
     ax.set_title(title)
 
     plt.show()
+"""
 
 
 # In[ ]:
@@ -193,12 +196,12 @@ for j, f in enumerate(json_files):
 
 # Make dataframe csvs for train/test
 
-out_dir = os.path.join(root_dir, 'csvs/')
+out_dir = os.path.join(outp_dir, 'csvs/')
 pops = ['train', 'test_public']
 os.makedirs(out_dir, exist_ok=True)
 
 for pop in pops: 
-    d = os.path.join(root_dir, pop)
+    d = os.path.join(outp_dir, pop)
     outpath = os.path.join(out_dir, 'sn7_baseline_' + pop + '_df.csv')
     im_list, mask_list = [], []
     subdirs = sorted([f for f in os.listdir(d) if os.path.isdir(os.path.join(d, f))])
