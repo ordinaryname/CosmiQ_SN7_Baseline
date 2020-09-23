@@ -10,7 +10,7 @@ To address this problem we propose the SpaceNet 7 Baseline algorithm.  This algo
 
 There are a few steps required to run the algorithm, as detailed below.
 
-<i>This fork from the original repo (CosmiQ/CosmiQ_SN7_Baseline) slightly refactors the code to more closely resemble the submission format.  The underlying algorithm and implementation are unchanged.</i>
+<b><i>This fork from the original repo (CosmiQ/CosmiQ_SN7_Baseline) slightly refactors the code to more closely resemble the submission format.  The underlying algorithm and implementation are unchanged.</i></b>
 
 -----------
 I. Download Data and Create Environment
