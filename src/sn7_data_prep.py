@@ -208,18 +208,18 @@ for pop in pops:
     for subdir in subdirs:
         
         if pop == 'train':
-            im_files = [os.path.join(d, subdir, 'images_masked', f)
-                    for f in sorted(os.listdir(os.path.join(d, subdir, 'images_masked')))
+            im_files = [os.path.join(root_dir, subdir, 'images_masked', f)
+                    for f in sorted(os.listdir(os.path.join(root_dir, subdir, 'images_masked')))
                     if f.endswith('.tif') and os.path.exists(os.path.join(d, subdir, 'masks', f.split('.')[0] + '_Buildings.tif'))]
             mask_files = [os.path.join(d, subdir, 'masks', f.split('.')[0] + '_Buildings.tif')
-                      for f in sorted(os.listdir(os.path.join(d, subdir, 'images_masked')))
+                      for f in sorted(os.listdir(os.path.join(root_dir, subdir, 'images_masked')))
                       if f.endswith('.tif') and os.path.exists(os.path.join(d, subdir, 'masks', f.split('.')[0] + '_Buildings.tif'))]
             im_list.extend(im_files)
             mask_list.extend(mask_files)
     
         elif pop == 'test':
-            im_files = [os.path.join(d, subdir, 'images_masked', f)
-                    for f in sorted(os.listdir(os.path.join(d, subdir, 'images_masked')))
+            im_files = [os.path.join(root_dir, subdir, 'images_masked', f)
+                    for f in sorted(os.listdir(os.path.join(root_dir, subdir, 'images_masked')))
                     if f.endswith('.tif')]
             im_list.extend(im_files)
 
