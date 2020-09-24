@@ -194,7 +194,7 @@ _ = pool.map(map_wrapper, params)
 # Make proposal csv
 
 prop_file = os.path.abspath(sys.argv[2])
-os.makedirs(os.path.dirname(prop_file))
+os.makedirs(os.path.dirname(prop_file), exist_ok=True)
 
 aoi_dirs = sorted([os.path.join(pred_top_dir, 'grouped', aoi, 'pred_jsons_match')                    for aoi in os.listdir(os.path.join(pred_top_dir, 'grouped'))                    if os.path.isdir(os.path.join(pred_top_dir, 'grouped', aoi, 'pred_jsons_match'))])
 print("aoi_dirs:", aoi_dirs)
