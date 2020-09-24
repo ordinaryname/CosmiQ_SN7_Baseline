@@ -53,7 +53,7 @@ pops = ['test']
 os.makedirs(out_dir, exist_ok=True)
 
 for pop in pops: 
-    d = outp_dir
+    d = root_dir
     outpath = os.path.join(out_dir, 'sn7_baseline_' + pop + '_df.csv')
     im_list, mask_list = [], []
     subdirs = sorted([f for f in os.listdir(d) if os.path.isdir(os.path.join(d, f))])
