@@ -228,7 +228,7 @@ for pop in pops:
     # print("mask_list:", mask_list)
     if pop == 'train':
         df = pd.DataFrame({'image': im_list, 'label': mask_list})
-        display(df.head())
+        #display(df.head())
     elif pop == 'test':
         df = pd.DataFrame({'image': im_list})
     df.to_csv(outpath, index=False)
