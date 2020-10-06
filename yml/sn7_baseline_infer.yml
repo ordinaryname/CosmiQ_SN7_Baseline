@@ -19,7 +19,7 @@ data_specs:
   channels: 4
   label_type: mask
   is_categorical: false
-  mask_channels: 1
+  mask_channels: 3
   val_holdout_frac: 0.1
   data_workers:
 
@@ -60,10 +60,10 @@ inference_augmentation:
       p: 1.0
   p: 1.0
 training:
-  epochs: 300
+  epochs: 400
   steps_per_epoch:
   optimizer: Adam
-  lr: 1e-4
+  lr: 7e-5
   opt_args:
   loss:
     bcewithlogits:

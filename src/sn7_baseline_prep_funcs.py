@@ -23,13 +23,13 @@ def map_wrapper(x):
     return x[0](*(x[1:]))
 
 
-def make_geojsons_and_masks(name_root, image_path, json_path, 
+def make_geojsons_and_masks(name_root, image_path, json_path,
                             output_path_mask, output_path_mask_fbc=None):
     '''
     Make the stuffins
-    mask_fbc is an (optional) three-channel fbc (footbrint, boundary, contact) mask
+    mask_fbc is an (optional) three-channel fbc (footprint, boundary, road) mask
     '''
-    
+
     print("  name_root:", name_root)
 
     # filter out null geoms (this is always a worthy check)
@@ -60,23 +60,22 @@ def make_geojsons_and_masks(name_root, image_path, json_path,
         if output_path_mask_fbc:
             mask_arr = np.zeros((3, im.shape[1], im.shape[2]))
             create_multiband_geotiff(mask_arr, output_path_mask_fbc, proj, geo)
-        return 
-        
+        return
+
     # make masks (single channel)
     # https://github.com/CosmiQ/solaris/blob/master/docs/tutorials/notebooks/api_masks_tutorial.ipynb
     f_mask = sol.vector.mask.df_to_px_mask(df=gdf_nonull, out_file=output_path_mask,
                                      channels=['footprint'],
                                      reference_im=image_path,
                                      shape=(im_tmp.shape[0], im_tmp.shape[1]))
-    
-    # three channel mask (takes awhile)
+
+    # three channel mask (contact channel, if used, takes forever)
     # https://github.com/CosmiQ/solaris/blob/master/docs/tutorials/notebooks/api_masks_tutorial.ipynb
     if output_path_mask_fbc:
         fbc_mask = sol.vector.mask.df_to_px_mask(df=gdf_nonull, out_file=output_path_mask_fbc,
-                                     channels=['footprint', 'boundary', 'contact'],
+                                     channels=['footprint', 'boundary', 'road'],
                                      reference_im=image_path,
-                                     boundary_width=5, contact_spacing=10, meters=True,
+                                     boundary_width=4, meters=True,
                                      shape=(im_tmp.shape[0], im_tmp.shape[1]))
 
     return
-

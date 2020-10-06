@@ -66,7 +66,7 @@ RUN conda update conda && \
 
 # get dev version of solaris and create conda environment based on its env file
 WORKDIR /root/
-RUN git clone https://github.com/cosmiq/solaris.git && \
+RUN git clone https://github.com/ordinaryname/solaris.git && \
     cd solaris && \
     git checkout ${solaris_branch} && \
     conda env create -f environment-gpu.yml

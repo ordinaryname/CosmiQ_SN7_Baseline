@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # # Prepare SpaceNet 7 Data for Model Training
-# 
+#
 # This Python script does the data processing steps (but not the visualization steps) from the ../notebooks/sn7_data_prep.ipynb notebook.  It takes the input file location as an argument.
 
 
@@ -54,8 +54,8 @@ outp_dir = sys.argv[2]
 aois = sorted([f for f in os.listdir(root_dir)
                if os.path.isdir(os.path.join(root_dir, f))])
 n_threads = 10
-params = [] 
-make_fbc = False
+params = []
+make_fbc = True
 
 input_args = []
 for i, aoi in enumerate(aois):
@@ -81,15 +81,15 @@ for i, aoi in enumerate(aois):
             output_path_mask_fbc = os.path.join(out_dir_mask_fbc, name_root + '.tif')
         else:
             output_path_mask_fbc = None
-            
+
         if (os.path.exists(output_path_mask)):
              continue
-        else: 
-            input_args.append([make_geojsons_and_masks, 
+        else:
+            input_args.append([make_geojsons_and_masks,
                                name_root, image_path, json_path,
                                output_path_mask, output_path_mask_fbc])
 
-# execute 
+# execute
 print("len input_args", len(input_args))
 print("Execute...\n")
 with multiprocessing.Pool(n_threads) as pool:
@@ -200,13 +200,13 @@ out_dir = os.path.join(outp_dir, '../csvs/')
 pops = ['train']
 os.makedirs(out_dir, exist_ok=True)
 
-for pop in pops: 
+for pop in pops:
     d = outp_dir
     outpath = os.path.join(out_dir, 'sn7_baseline_' + pop + '_df.csv')
     im_list, mask_list = [], []
     subdirs = sorted([f for f in os.listdir(d) if os.path.isdir(os.path.join(d, f))])
     for subdir in subdirs:
-        
+
         if pop == 'train':
             im_files = [os.path.join(root_dir, subdir, 'images_masked', f)
                     for f in sorted(os.listdir(os.path.join(root_dir, subdir, 'images_masked')))
@@ -216,7 +216,7 @@ for pop in pops:
                       if f.endswith('.tif') and os.path.exists(os.path.join(d, subdir, 'masks', f.split('.')[0] + '_Buildings.tif'))]
             im_list.extend(im_files)
             mask_list.extend(mask_files)
-    
+
         elif pop == 'test':
             im_files = [os.path.join(root_dir, subdir, 'images_masked', f)
                     for f in sorted(os.listdir(os.path.join(root_dir, subdir, 'images_masked')))
