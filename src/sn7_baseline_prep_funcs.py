@@ -27,7 +27,7 @@ def make_geojsons_and_masks(name_root, image_path, json_path,
                             output_path_mask, output_path_mask_fbc=None):
     '''
     Make the stuffins
-    mask_fbc is an (optional) three-channel fbc (footprint, boundary, road) mask
+    mask_fbc is an (optional) three-channel fbc (footprint, boundary, raw) mask
     '''
 
     print("  name_root:", name_root)
@@ -73,7 +73,7 @@ def make_geojsons_and_masks(name_root, image_path, json_path,
     # https://github.com/CosmiQ/solaris/blob/master/docs/tutorials/notebooks/api_masks_tutorial.ipynb
     if output_path_mask_fbc:
         fbc_mask = sol.vector.mask.df_to_px_mask(df=gdf_nonull, out_file=output_path_mask_fbc,
-                                     channels=['footprint', 'boundary', 'road'],
+                                     channels=['footprint', 'boundary', 'raw'],
                                      reference_im=image_path,
                                      boundary_width=4, meters=True,
                                      shape=(im_tmp.shape[0], im_tmp.shape[1]))

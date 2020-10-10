@@ -60,10 +60,10 @@ inference_augmentation:
       p: 1.0
   p: 1.0
 training:
-  epochs: 400
+  epochs: 450
   steps_per_epoch:
   optimizer: Adam
-  lr: 7e-5
+  lr: 1e-4
   opt_args:
   loss:
     bcewithlogits:
