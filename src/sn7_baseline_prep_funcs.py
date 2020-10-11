@@ -73,7 +73,7 @@ def make_geojsons_and_masks(name_root, image_path, json_path,
     # https://github.com/CosmiQ/solaris/blob/master/docs/tutorials/notebooks/api_masks_tutorial.ipynb
     if output_path_mask_fbc:
         fbc_mask = sol.vector.mask.df_to_px_mask(df=gdf_nonull, out_file=output_path_mask_fbc,
-                                     channels=['footprint', 'boundary', 'raw'],
+                                     channels=['band1', 'band2', 'band3'],
                                      reference_im=image_path,
                                      boundary_width=4, meters=True,
                                      shape=(im_tmp.shape[0], im_tmp.shape[1]))
